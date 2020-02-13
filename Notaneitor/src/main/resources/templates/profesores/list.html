@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Notaneitor</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav th:replace="fragments/nav" />
+
+
+
+	<div class="container">
+		<h2>Profesores</h2>
+		<p>Los profesores que actualmente figuran en el sistema son los
+			siguientes:</p>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="col-md-1">id</th>
+						<th>DNI</th>
+						<th>Nombre</th>
+						<th>Apellidos</th>
+						<th>Categoria</th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="profesor : ${profesorList}">
+						<td th:text="${profesor.id}">1</td>
+						<td th:text="${profesor.dni}">Ejercicio 1</td>
+						<td th:text="${profesor.nombre}">10</td>
+						<td th:text="${profesor.apellidos}">10</td>
+						<td th:text="${profesor.categoria}">10</td>
+						<td><a th:href="${'/profesor/details/' + profesor.id}">detalles</a></td>
+						<td><a th:href="${'/profesor/edit/' + profesor.id}">modificar</a></td>
+						<td><a th:href="${'/profesor/delete/' + profesor.id}">eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+</body>
+</html>
