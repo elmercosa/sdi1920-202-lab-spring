@@ -1,13 +1,22 @@
 package com.uniovi.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Profesor {
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String dni;
 	private String nombre;
 	private String apellidos;
 	private String categoria;
-	
-	public Profesor(String dni, String nombre, String apellidos, String categoria) {
+
+	public Profesor(Long id, String dni, String nombre, String apellidos, String categoria) {
 		super();
+		this.id = id;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -15,6 +24,14 @@ public class Profesor {
 	}
 
 	public Profesor() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getDni() {
@@ -51,10 +68,8 @@ public class Profesor {
 
 	@Override
 	public String toString() {
-		return "Profesor [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", categoria=" + categoria
-				+ "]";
+		return "Profesor [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", categoria=" + categoria + "]";
 	}
-	
-	
 
 }

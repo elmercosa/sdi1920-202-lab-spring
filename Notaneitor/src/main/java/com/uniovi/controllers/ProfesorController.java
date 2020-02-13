@@ -1,17 +1,16 @@
 package com.uniovi.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.uniovi.entities.Profesor;
 import com.uniovi.services.ProfesorService;
 
-@RestController
+@Controller
 public class ProfesorController {
 	@Autowired // Inyectar el servicio
 	private ProfesorService profesorService;
@@ -19,37 +18,28 @@ public class ProfesorController {
 	@RequestMapping("/profesor/list")
 	public String getList() {
 		return profesorService.getProfesores().toString();
-
 	}
 
 	@RequestMapping(value = "/profesor/add", method = RequestMethod.POST)
-	public String setMark(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String categoria ) {
-		profesorService.addProfesor(new Profesor(dni, nombre, apellido, categoria));
+	public String setMark(@ModelAttribute Profesor profesor) {
+		profesorService.addProfesor(profesor);
 		return "Profesor añadido";
 	}
 
-	@RequestMapping("/profesor/details/{dni}")
-	public String getDetail(@PathVariable String dni) {
-		return profesorService.getProfesor(dni).toString();
+	@RequestMapping("/profesor/details/{id}")
+	public String getDetail(@PathVariable Long id) {
+		return profesorService.getProfesor(id).toString();
 	}
 
-	@RequestMapping("/profesor/delete/{dni}")
-	public String deleteMark(@PathVariable String dni) {
-		profesorService.deleteProfesor(dni);
+	@RequestMapping("/profesor/delete/{id}")
+	public String deleteMark(@PathVariable Long id) {
+		profesorService.deleteProfesor(id);
 		return "Profesor eliminado";
 	}
 
-	@RequestMapping(value = "/profesor/edit/{dni}")
-	public String getEdit(@PathVariable String dni) {
-		profesorService.getProfesor(dni);
+	@RequestMapping(value = "/profesor/edit/{id}")
+	public String getEdit(@PathVariable Long id) {
+		profesorService.getProfesor(id);
 		return "Profesor editado";
 	}
-
-//	@RequestMapping(value = "/profesor/edit/{id}", method = RequestMethod.POST)
-//	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute Mark mark) {
-//		mark.setId(id);
-//		marksService.addMark(mark);
-//		return "redirect:/mark/details/" + id;
-//	}
-
 }
