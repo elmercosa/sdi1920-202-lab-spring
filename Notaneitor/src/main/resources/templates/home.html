@@ -5,19 +5,21 @@
 	<nav th:replace="fragments/nav" />
 	<div class="container" style="text-align: center">
 		<h2 th:text="#{welcome.message}"></h2>
-		<h3>Esta es una zona privada la web</h3>
-		<p>
-			Usuario Autenticado como : <b th:inline="text">
+		<h3 th:text="#{zona.privada.message}">Esta es una zona privada la web</h3>
+		<p th:text="#{autenticado.message}">
+		</p>
+		<p>	
+		 <b th:inline="text">
 				[[${#httpServletRequest.remoteUser}]] </b>
 		</p>
-		<p>Notas del usuario</p>
+		<p th:text="#{notas.usuario.message}">Notas del usuario</p>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th class="col-md-1">id</th>
-						<th>Descripción</th>
-						<th>Puntuación</th>
+						<th th:text="#{descripcion.message}">Descripción</th>
+						<th th:text="#{puntuacion.message}">Puntuación</th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
 						<th class="col-md-1"></th>
@@ -28,9 +30,9 @@
 						<td th:text="${mark.id}">1</td>
 						<td th:text="${mark.description}">Ejercicio 1</td>
 						<td th:text="${mark.score}">10</td>
-						<td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-						<td><a th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
-						<td><a th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
+						<td><a th:href="${'/mark/details/' + mark.id}" th:text="#{detalles.message}">detalles</a></td>
+						<td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{modificar.message}">modificar</a></td>
+						<td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{eliminar.message}">eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>
