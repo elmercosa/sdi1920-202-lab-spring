@@ -91,4 +91,12 @@ public class User {
 	public String getFullName() {
 		return this.name + " " + this.lastName;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", dni=" + dni + ", name=" + name + ", lastName=" + lastName + ", password="
+				+ password + ", passwordConfirm=" + passwordConfirm + ", role=" + role + ", marks=" + marks + "]";
+	}
+	
+	
 }
