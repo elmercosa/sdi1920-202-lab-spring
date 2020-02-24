@@ -71,7 +71,7 @@ public class UsersController {
 		User user2 = usersService.getUser(id);
 		user2.setName(user.getName());
 		user2.setLastName(user.getLastName());
-		System.out.println(user2);
+		user2.setMarks(user.getMarks());
 		usersService.addUser(user2);
 
 		return "redirect:/user/details/" + id;
@@ -90,6 +90,7 @@ public class UsersController {
 			return "signup";
 		}
 		usersService.addUser(user);
+		System.out.println(user.getDni());
 		securityService.autoLogin(user.getDni(), user.getPasswordConfirm());
 		return "redirect:home";
 	}

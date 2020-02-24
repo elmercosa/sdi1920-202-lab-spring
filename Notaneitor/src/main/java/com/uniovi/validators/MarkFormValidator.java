@@ -1,18 +1,14 @@
 package com.uniovi.validators;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.uniovi.entities.Mark;
 import com.uniovi.entities.User;
-import com.uniovi.services.MarksService;
 
 @Component
 public class MarkFormValidator implements Validator {
-	@Autowired
-	private MarksService marksService;
 
 	@Override
 	public boolean supports(Class<?> aClass) {

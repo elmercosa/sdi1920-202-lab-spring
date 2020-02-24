@@ -1,5 +1,7 @@
 package com.uniovi.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,6 @@ import com.uniovi.entities.Mark;
 import com.uniovi.services.MarksService;
 import com.uniovi.services.UsersService;
 import com.uniovi.validators.MarkFormValidator;
-import com.uniovi.validators.TeacherFormValidator;
 
 @Controller
 public class MarksController {
@@ -23,12 +24,13 @@ public class MarksController {
 	private UsersService usersService;
 	@Autowired
 	private MarkFormValidator signUpFormValidator;
+	@Autowired
+	private HttpSession httpSession;
 
 	@RequestMapping("/mark/list")
 	public String getList(Model model) {
 		model.addAttribute("markList", marksService.getMarks());
 		return "mark/list";
-
 	}
 
 	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
