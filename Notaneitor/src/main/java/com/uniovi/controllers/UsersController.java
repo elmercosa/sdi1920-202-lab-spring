@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.User;
+import com.uniovi.services.RolesService;
 import com.uniovi.services.SecurityService;
 import com.uniovi.services.UsersService;
 import com.uniovi.validators.SignUpFormValidator;
@@ -28,6 +29,9 @@ public class UsersController {
 	@Autowired
 	private SignUpFormValidator signUpFormValidator;
 
+	@Autowired
+	private RolesService rolesService;
+
 	@RequestMapping("/user/list")
 	public String getListado(Model model) {
 		model.addAttribute("usersList", usersService.getUsers());
@@ -36,13 +40,14 @@ public class UsersController {
 
 	@RequestMapping(value = "/user/add")
 	public String getUser(Model model) {
+		model.addAttribute("rolesList", rolesService.getRoles());
 		model.addAttribute("usersList", usersService.getUsers());
 		return "user/add";
 	}
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
 	public String setUser(@ModelAttribute User user) {
-		System.out.println(user==null);
+		System.out.println(user == null);
 		usersService.addUser(user);
 		return "redirect:/user/list";
 	}
@@ -89,6 +94,7 @@ public class UsersController {
 		if (result.hasErrors()) {
 			return "signup";
 		}
+		user.setRole(rolesService.getRoles()[0]);
 		usersService.addUser(user);
 		System.out.println(user.getDni());
 		securityService.autoLogin(user.getDni(), user.getPasswordConfirm());
@@ -108,7 +114,6 @@ public class UsersController {
 		model.addAttribute("markList", activeUser.getMarks());
 		return "home";
 	}
-	
 
 	@RequestMapping("/user/list/update")
 	public String updateList(Model model) {

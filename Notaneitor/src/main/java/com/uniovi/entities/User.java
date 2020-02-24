@@ -32,6 +32,14 @@ public class User {
 	public User() {
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -97,6 +105,5 @@ public class User {
 		return "User [id=" + id + ", dni=" + dni + ", name=" + name + ", lastName=" + lastName + ", password="
 				+ password + ", passwordConfirm=" + passwordConfirm + ", role=" + role + ", marks=" + marks + "]";
 	}
-	
-	
+
 }
