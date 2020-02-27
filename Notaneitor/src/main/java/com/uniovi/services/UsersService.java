@@ -29,6 +29,10 @@ public class UsersService {
 		usersRepository.findAll().forEach(users::add);
 		return users;
 	}
+	public List<User> getUserByName(String searchText) {
+		searchText = "%" + searchText + "%";
+		return usersRepository.searchByName(searchText);
+	}
 
 	public User getUser(Long id) {
 		return usersRepository.findById(id).get();

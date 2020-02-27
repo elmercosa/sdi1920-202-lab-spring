@@ -15,9 +15,22 @@
 		</form>
 		<p>Las notas que actualmente figuran en el sistema son las
 			siguientes:</p>
-		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
 
-		<div th:replace="fragments/markList" />
+
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			$( "#updateButton" ).click(function() {
+			 var numberPage = [[${param.page}]];
+			 var urlUpdate = '/mark/list/update';
+			 if (numberPage != null ){
+			 urlUpdate += "?page="+numberPage[0];
+			 }
+			 $("#tableMarks").load(urlUpdate);
+			 });
+			 /*]]>*/
+		 </script>
+		<button type="button" id="updateButton" class="btn btn-default">Actualizar</button>
+		<div th:replace="fragments/markList" th:fragment="tableMarks" id="tableMarks" />
 		<footer th:replace="fragments/pagination" />
 	</div>
 

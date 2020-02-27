@@ -12,7 +12,8 @@
 			</span>
 		</p>
 		<p th:text="#{notas.usuario.message}">Notas del usuario</p>
-		<div th:replace="fragments/markList" />
+		<div th:replace="fragments/markList" th:fragment="tableMarks"
+			id="tableMarks" />
 
 	</div>
 	<footer th:replace="fragments/footer" />

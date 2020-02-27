@@ -42,7 +42,7 @@ public class TeacherFormValidator implements Validator {
 		if (user.getApellidos().length() < 5 || user.getApellidos().length() > 24) {
 			errors.rejectValue("apellidos", "Error.signup.lastName.length");
 		}
-		if (user.getCategoria().length() != 0) {
+		if (user.getCategoria().length() == 0) {
 			errors.rejectValue("categoria", "Error.empty");
 		}
 	}
